@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:57 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/18 19:05:40 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:52:38 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_data
 	pthread_mutex_t	mut_sleep_time;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
-	pthread_t		philo_threads;
+	pthread_t		*philo_threads;
 	pthread_t		monit_all_alive;
 	pthread_t		monit_all_full;			
 }	t_data;
@@ -96,6 +96,10 @@ int		init_forks(t_data *data);
 u_int64_t	get_time(void);
 void		ft_usleep(u_int64_t time);
 
+// monitor.c
+void	*all_alive_routine(void *data_p);
+void	*all_full_routine(void *data_p);
+
 // eat1.c
 void update_last_meal_time(t_philo *philo);
 
@@ -106,5 +110,20 @@ int		ft_sleep(t_philo *philo);
 void	*routine(void *philo);
 bool	philo_died(t_philo *philo);
 
+
+// getter1.c
+int			get_nb_philos(t_data *data);
+t_state		get_philo_state(t_philo *philo);
+int			get_nb_meals_philo_had(t_philo *philo);
+uint64_t	get_start_time(t_data *data);
+bool		get_keep_iter(t_data *data);
+
+// utils.c
+void	print_msg(t_data *data, int id, char *msg);
+bool	nb_meals_option(t_data *data);
+
+// setters.c
+void	set_philo_state(t_philo *philo, t_state state);
+void 	set_keep_iterating(t_data *data, bool set_to);
 
 #endif
