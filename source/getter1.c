@@ -44,9 +44,9 @@ int	get_nb_meals_philo_had(t_philo *philo)
 {
 	int	nb_meals_had;
 
-	pthread_mutex_lock(&philo->mut_nb_meals_had);
-	nb_meals_had = philo->nb_meals_had;
-	pthread_mutex_unlock(&philo->mut_nb_meals_had);
+	pthread_mutex_lock(&philo->mut_meals_had);
+	nb_meals_had = philo->meals_had;
+	pthread_mutex_unlock(&philo->mut_meals_had);
 	return (nb_meals_had);
 }
 

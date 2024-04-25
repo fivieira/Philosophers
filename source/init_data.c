@@ -50,7 +50,7 @@ int	init_philos(t_data *data)
 		pthread_mutex_init(&philo[i].mut_last_eat_time, NULL);
 		update_last_meal_time(&philo[i]);
 	}
-	
+	return (0);
 }
 
 int	malloc_data(t_data *data)
@@ -60,10 +60,8 @@ int	malloc_data(t_data *data)
 		return (ERROR_MALLOC);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (data->forks == NULL)
-	{
-		free(data->philos);
-		return (ERROR_MALLOC);
-	}
+		return (free(data->philos), ERROR_MALLOC);
+	data->philo_threads = malloc(sizeof(pthread_t) * data->nb_philo);	
 	if(data->philo_threads == NULL)
 	{
 		free(data->philos);
@@ -78,18 +76,18 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->nb_full_p = 0;
 	data->keep_iterating = true;
 	data->nb_philo = ft_atoi(argv[1]);
-	data->mut_die_time = (u_int64_t) ft_atoi(argv[2]);
-	data->mut_eat_time = (u_int64_t) ft_atoi(argv[3]);
-	data->mut_sleep_time = (u_int64_t) ft_atoi(argv[4]);
+	data->die_time = (u_int64_t) ft_atoi(argv[2]);
+	data->eat_time = (u_int64_t) ft_atoi(argv[3]);
+	data->sleep_time = (u_int64_t) ft_atoi(argv[4]);
 	data->nb_meals = -1;
 	if (argc == 6)
 		data->nb_meals = ft_atoi(argv[5]);
-	pthread_mutex_init(&data->mut_eat_t, NULL);
-	pthread_mutex_init(&data->mut_sleep_t, NULL);
-	pthread_mutex_init(&data->mut_die_t, NULL);
+	pthread_mutex_init(&data->mut_eat_time, NULL);
+	pthread_mutex_init(&data->mut_sleep_time, NULL);
+	pthread_mutex_init(&data->mut_die_time, NULL);
 	pthread_mutex_init(&data->mut_print, NULL);
 	pthread_mutex_init(&data->mut_nb_philos, NULL);
-	pthread_mutex_init(&data->mut_keep_iter, NULL);
+	pthread_mutex_init(&data->mut_keep_iterate, NULL);
 	pthread_mutex_init(&data->mut_start_time, NULL);
 	return (malloc_data(data));
 }

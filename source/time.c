@@ -12,6 +12,28 @@
 
 #include "../includes/philo.h"
 
+void	wait_until(u_int64_t wakeup_time)
+{
+	int			margin;
+	u_int64_t	time;
+
+	margin = 5;
+	while (1)
+	{
+		time = get_time();
+		if (wakeup_time <= time + margin)
+		{
+			while (wakeup_time > time)
+				time = get_time();
+			break ;
+		}
+		else
+		{
+			usleep(1000 * (wakeup_time - time - margin));
+		}
+	}
+}
+
 void	ft_usleep(uint64_t sleep_time)
 {
 	u_int64_t	start;

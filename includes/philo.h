@@ -51,9 +51,9 @@ typedef struct philo
 	t_state			state;
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
-	pthread_mutex_t	*mut_state;
-	pthread_mutex_t	*mut_meals_had;
-	pthread_mutex_t	*mut_last_eat_time;
+	pthread_mutex_t	mut_state;
+	pthread_mutex_t	mut_meals_had;
+	pthread_mutex_t	mut_last_eat_time;
 	u_int64_t		last_eat_time;
 }	t_philo;
 
@@ -94,14 +94,24 @@ int		init_forks(t_data *data);
 
 // time.c
 u_int64_t	get_time(void);
-void		ft_usleep(u_int64_t time);
+void		ft_usleep(uint64_t sleep_time);
+void		wait_until(u_int64_t wakeup_time);
 
 // monitor.c
 void	*all_alive_routine(void *data_p);
 void	*all_full_routine(void *data_p);
 
 // eat1.c
-void update_last_meal_time(t_philo *philo);
+void 		update_last_meal_time(t_philo *philo);
+int			eat(t_philo *philo);
+
+// eat2.c
+int 		take_forks(t_philo *philo);
+int			take_right_fork(t_philo *philo);
+int			take_left_fork(t_philo *philo);
+void		drop_right_fork(t_philo *philo);
+void		drop_left_fork(t_philo *philo);
+
 
 //sleep.c
 int		ft_sleep(t_philo *philo);
@@ -111,16 +121,27 @@ void	*routine(void *philo);
 bool	philo_died(t_philo *philo);
 
 
-// getter1.c
+// getters.c
 int			get_nb_philos(t_data *data);
 t_state		get_philo_state(t_philo *philo);
 int			get_nb_meals_philo_had(t_philo *philo);
 uint64_t	get_start_time(t_data *data);
 bool		get_keep_iter(t_data *data);
+uint64_t	get_die_time(t_data *data);
+uint64_t	get_eat_time(t_data *data);
+uint64_t	get_sleep_time(t_data *data);
+uint64_t	get_last_eat_time(t_philo *philo);
+
+// think.c
+int			think(t_philo *philo);
+
 
 // utils.c
-void	print_msg(t_data *data, int id, char *msg);
-bool	nb_meals_option(t_data *data);
+void		print_msg(t_data *data, int id, char *msg);
+bool		nb_meals_option(t_data *data);
+void		free_data(t_data *data);
+int			handle_1_philo(t_philo *philo);
+void		print_mut(t_data *data, char *msg);
 
 // setters.c
 void	set_philo_state(t_philo *philo, t_state state);

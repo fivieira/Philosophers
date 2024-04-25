@@ -12,6 +12,16 @@
 
 #include "../includes/philo.h"
 
+bool	is_philo_full(t_data *data, t_philo *philo)
+{
+	bool	result;
+
+	result = false;
+	if(get_nb_meals_philo_had(philo) >= data->nb_meals)
+		result = true;
+	return(result);	
+}
+
 bool	philo_died(t_philo *philo)
 {
 	bool		result;

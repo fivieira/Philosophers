@@ -22,7 +22,7 @@ int	run_threads(t_data *data)
 	data->start_time = get_time();
 	while (++i < nb_of_philos)
 	{
-		if(pthread_create(&data->philos[i], NULL,
+		if(pthread_create(&data->philo_threads[i], NULL,
 			 &routine, &data->philos[i]))
 			return (1);
 	}
@@ -81,8 +81,6 @@ int	main(int argc, char **argv)
 		return (WRONG_INPUT);
 	}
 	if(philosopher(argc, argv) != 0)
-	{
 		return (ERROR_MALLOC);
-	}
 	return (0);
 }
