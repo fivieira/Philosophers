@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:57 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/26 11:56:51 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:59:17 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 typedef enum philo_state
 {
 	EATING = 0,
-	SLEEPING = 0,
-	THINKING = 0,
+	SLEEPING = 1,
+	THINKING = 2,
 	DEAD = 3,
 	FULL = 4,
 	Inactive = 5
