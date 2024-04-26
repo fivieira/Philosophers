@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:06:20 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/26 11:40:52 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:47:22 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ int	init_forks(t_data *data)
 
 int	init_philos(t_data *data)
 {
-	t_philo	*philo;
+	t_philo	*philos;
 	int		i;
 
 	i = -1;
-	philo = data->philos;
+	philos = data->philos;
 	while (++i < data->nb_philo)
 	{
-		philo[i].data = data;
-		philo[i].id = i + 1;
-		philo[i].meals_had = 0;
-		philo[i].state = Inactive;
-		pthread_mutex_init(&philo[i].mut_state, NULL);
-		pthread_mutex_init(&philo[i].mut_meals_had, NULL);
-		pthread_mutex_init(&philo[i].mut_last_eat_time, NULL);
-		update_last_meal_time(&philo[i]);
+		philos[i].data = data;
+		philos[i].id = i + 1;
+		philos[i].meals_had = 0;
+		philos[i].state = Inactive;
+		pthread_mutex_init(&philos[i].mut_state, NULL);
+		pthread_mutex_init(&philos[i].mut_meals_had, NULL);
+		pthread_mutex_init(&philos[i].mut_last_eat_time, NULL);
+		update_last_meal_time(&philos[i]);
 	}
 	return (0);
 }
@@ -64,9 +64,7 @@ int	malloc_data(t_data *data)
 	data->philo_threads = malloc(sizeof(pthread_t) * data->nb_philo);
 	if (data->philo_threads == NULL)
 	{
-		free(data->philos);
-		free(data->forks);
-		return (ERROR_MALLOC);
+		return (free(data->philos), free(data->forks), ERROR_MALLOC);
 	}
 	return (0);
 }

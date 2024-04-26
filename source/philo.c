@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:01:47 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/26 11:52:13 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:56:45 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ int	philosopher(int argc, char **argv)
 	join_threads(&data);
 	free_data(&data);
 	return (0);
+}
+
+void	leaks(void)
+{
+	system("leaks philo");
 }
 
 int	main(int argc, char **argv)

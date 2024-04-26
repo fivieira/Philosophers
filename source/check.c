@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:46:16 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/26 11:47:39 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:38:50 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	wrong_input_check(int argc, char **argv)
 	int	i;
 
 	i = 1;
-	if (argc == 6 && ft_atoi(argv[5]) < 0)
+	if (argc == 6 && ft_atoi(argv[5]) <= 0)
 		return (WRONG_INPUT);
-	if (ft_atoi(argv[1]) < 2 || ft_atoi(argv[1]) > 200)
+	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
 		return (WRONG_INPUT);
 	while (++i < 5)
 	{
@@ -48,45 +48,46 @@ int	wrong_input_check(int argc, char **argv)
 
 int	ft_atoi(char *str)
 {
-	int	i;
-	int	res;
-	int	sign;
+	int		count;
+	long	result;
+	int		sign;
 
-	i = 0;
-	res = 0;
+	count = 0;
+	result = 0;
 	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	while (str[count] == '\r' || str[count] == '\t' || str[count] == ' '
+		|| str[count] == '\f' || str[count] == '\v' || str[count] == '\n')
+		count++;
+	if (str[count] == '-')
 	{
-		i++;
+		sign = -1;
+		count++;
 	}
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = sign * -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + str[i] - '0';
-		i++;
-	}
-	return (res * sign);
+	else if (str[count] == '+')
+		count++;
+	if (!(str[count] >= '0' && str[count] <= '9'))
+		return (0);
+	while (str[count] >= '0' && str[count] <= '9')
+		result = result * 10 + (str[count++] - '0');
+	return (result * sign);
 }
 
 int	is_input_digit(int argc, char **argv)
 {
 	int	i;
-	int	j;
+	int	k;
 
 	i = 1;
 	while (i < argc)
 	{
-		j = 0;
-		while (argv[i][j])
+		k = 0;
+		while (argv[i][k] != '\0')
 		{
-			if (argv[i][j] < '0' || argv[i][j] > '9')
+			if (argv[i][k] < '0' || argv[i][k] > '9')
+			{
 				return (WRONG_INPUT);
-			j++;
+			}
+			k++;
 		}
 		i++;
 	}
