@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 11:46:16 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/19 12:40:34 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:49:23 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	is_philo_full(t_data *data, t_philo *philo)
 	bool	result;
 
 	result = false;
-	if(get_nb_meals_philo_had(philo) >= data->nb_meals)
+	if (get_nb_meals_philo_had(philo) >= data->nb_meals)
 		result = true;
-	return(result);	
+	return (result);
 }
 
 bool	philo_died(t_philo *philo)
@@ -37,6 +37,7 @@ bool	philo_died(t_philo *philo)
 	}
 	return (result);
 }
+
 void	notify_all_philos(t_data *data)
 {
 	t_philo	*philos;
@@ -75,8 +76,8 @@ void	*all_full_routine(void *data_p)
 
 void	*all_alive_routine(void *data_p)
 {
-	int	i;
-	int	nb_philos;
+	int		i;
+	int		nb_philos;
 	t_data	*data;
 	t_philo	*philos;
 
@@ -86,16 +87,16 @@ void	*all_alive_routine(void *data_p)
 	i = -1;
 	while (++i < nb_philos && get_keep_iter(data))
 	{
-		if(philo_died(&philos[i]) && get_keep_iter(data))
+		if (philo_died(&philos[i]) && get_keep_iter(data))
 		{
 			print_msg(data, philos[i].id, DIED);
 			set_keep_iterating(data, false);
 			notify_all_philos(data);
 			break ;
 		}
-		if(i == nb_philos - 1)
+		if (i == nb_philos - 1)
 			i = -1;
-		usleep(1000);	
+		usleep(1000);
 	}
 	return (NULL);
 }

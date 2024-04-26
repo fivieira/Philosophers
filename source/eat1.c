@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:15:19 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/18 18:32:43 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:54:58 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	sleep_for_eating(t_philo *philo)
 
 int	eat(t_philo *philo)
 {
-	if(take_forks(philo) != 0)
+	if (take_forks(philo) != 0)
 		return (1);
-	set_philo_state(philo,EATING);
+	set_philo_state(philo, EATING);
 	print_msg(philo->data, philo->id, EAT);
 	update_last_meal_time(philo);
 	sleep_for_eating(philo);

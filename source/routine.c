@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:14:02 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/18 19:04:05 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:43:55 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	*routine(void *philo_p)
 		ft_usleep(philo->data->eat_time - 10);
 	while (get_philo_state(philo) != DEAD)
 	{
-		if(eat(philo) != 0)
+		if (eat(philo) != 0)
 			break ;
-		if(get_philo_state(philo) == DEAD)
+		if (get_philo_state(philo) == DEAD)
 			break ;
-		if(ft_sleep(philo) != 0)
+		if (ft_sleep(philo) != 0)
 			break ;
-		if(get_philo_state(philo) == DEAD)
+		if (get_philo_state(philo) == DEAD)
 			break ;
-		if(think(philo) != 0)
+		if (think(philo) != 0)
 			break ;
 	}
-	return (NULL);	
+	return (NULL);
 }

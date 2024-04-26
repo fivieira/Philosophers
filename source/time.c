@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:09:46 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/18 18:32:16 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:44:59 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ uint64_t	get_time(void)
 {
 	struct timeval	time;
 
-	if(gettimeofday(&time, NULL))
+	if (gettimeofday(&time, NULL))
 		return (0);
-	return ((time.tv_sec * (u_int64_t)1000) + (time.tv_usec / 1000));	
+	return ((time.tv_sec * (u_int64_t)1000) + (time.tv_usec / 1000));
 }

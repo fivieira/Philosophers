@@ -6,13 +6,13 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:31:50 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/19 12:54:11 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:42:59 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int handle_1_philo(t_philo *philo)
+int	handle_1_philo(t_philo *philo)
 {
 	take_left_fork(philo);
 	ft_usleep(get_die_time(philo->data));
@@ -22,10 +22,11 @@ int handle_1_philo(t_philo *philo)
 
 bool	nb_meals_option(t_data *data)
 {
-	if(data->nb_meals > 0)
+	if (data->nb_meals > 0)
 		return (true);
-	return (false);	
+	return (false);
 }
+
 void	free_data(t_data *data)
 {
 	int	i;
@@ -55,10 +56,10 @@ void	free_data(t_data *data)
 void	print_msg(t_data *data, int id, char *msg)
 {
 	uint64_t	time;
-	
+
 	time = get_time() - get_start_time(data);
 	pthread_mutex_lock(&data->mut_print);
-	if(get_keep_iter(data))
+	if (get_keep_iter(data))
 		printf("%lu %d %s\n", time, id, msg);
 	pthread_mutex_unlock(&data->mut_print);
 }

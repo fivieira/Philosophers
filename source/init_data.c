@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:06:20 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/18 18:32:32 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:40:52 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	init_forks(t_data *data)
 {
-	int	i;
+	int		i;
 	t_philo	*philo;
-	
+
 	philo = data->philos;
 	i = -1;
 	while (++i < data->nb_philo)
@@ -28,7 +28,7 @@ int	init_forks(t_data *data)
 	{
 		philo[i].left_f = &data->forks[i];
 		philo[i].right_f = &data->forks[i - 1];
-	}	
+	}
 	return (0);
 }
 
@@ -36,7 +36,7 @@ int	init_philos(t_data *data)
 {
 	t_philo	*philo;
 	int		i;
-	
+
 	i = -1;
 	philo = data->philos;
 	while (++i < data->nb_philo)
@@ -61,8 +61,8 @@ int	malloc_data(t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (data->forks == NULL)
 		return (free(data->philos), ERROR_MALLOC);
-	data->philo_threads = malloc(sizeof(pthread_t) * data->nb_philo);	
-	if(data->philo_threads == NULL)
+	data->philo_threads = malloc(sizeof(pthread_t) * data->nb_philo);
+	if (data->philo_threads == NULL)
 	{
 		free(data->philos);
 		free(data->forks);

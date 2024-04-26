@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:06:19 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/19 12:20:06 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:44:36 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	get_nb_philos(t_data *data)
 	pthread_mutex_unlock(&data->mut_nb_philos);
 	return (nb_philos);
 }
+
 t_state	get_philo_state(t_philo *philo)
 {
 	t_state	state;
@@ -40,6 +41,7 @@ t_state	get_philo_state(t_philo *philo)
 	pthread_mutex_unlock(&philo->mut_state);
 	return (state);
 }
+
 int	get_nb_meals_philo_had(t_philo *philo)
 {
 	int	nb_meals_had;

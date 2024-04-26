@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:25:57 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/19 12:52:38 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:56:51 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct philo
 typedef struct s_data
 {
 	int				nb_philo;
-	int 			nb_meals;
+	int				nb_meals;
 	int				nb_full_p;
 	bool			keep_iterating;
 	u_int64_t		start_time;
@@ -82,15 +82,15 @@ typedef struct s_data
 }	t_data;
 
 // check.c
-int		check_input(int argc, char **argv);
-int		ft_atoi(char *str);
-int		wrong_input_check(int argc, char **argv);
-void	print_instruction(void);
+int			check_input(int argc, char **argv);
+int			ft_atoi(char *str);
+int			wrong_input_check(int argc, char **argv);
+void		print_instruction(void);
 
 // init_data.c
-int		init_data(t_data *data, int argc, char **argv);
-int		init_philos(t_data *data);
-int		init_forks(t_data *data);
+int			init_data(t_data *data, int argc, char **argv);
+int			init_philos(t_data *data);
+int			init_forks(t_data *data);
 
 // time.c
 u_int64_t	get_time(void);
@@ -98,28 +98,26 @@ void		ft_usleep(uint64_t sleep_time);
 void		wait_until(u_int64_t wakeup_time);
 
 // monitor.c
-void	*all_alive_routine(void *data_p);
-void	*all_full_routine(void *data_p);
+void		*all_alive_routine(void *data_p);
+void		*all_full_routine(void *data_p);
 
 // eat1.c
-void 		update_last_meal_time(t_philo *philo);
+void		update_last_meal_time(t_philo *philo);
 int			eat(t_philo *philo);
 
 // eat2.c
-int 		take_forks(t_philo *philo);
+int			take_forks(t_philo *philo);
 int			take_right_fork(t_philo *philo);
 int			take_left_fork(t_philo *philo);
 void		drop_right_fork(t_philo *philo);
 void		drop_left_fork(t_philo *philo);
 
-
 //sleep.c
-int		ft_sleep(t_philo *philo);
+int			ft_sleep(t_philo *philo);
 
 // routine.c
-void	*routine(void *philo);
-bool	philo_died(t_philo *philo);
-
+void		*routine(void *philo);
+bool		philo_died(t_philo *philo);
 
 // getters.c
 int			get_nb_philos(t_data *data);
@@ -135,7 +133,6 @@ uint64_t	get_last_eat_time(t_philo *philo);
 // think.c
 int			think(t_philo *philo);
 
-
 // utils.c
 void		print_msg(t_data *data, int id, char *msg);
 bool		nb_meals_option(t_data *data);
@@ -144,7 +141,7 @@ int			handle_1_philo(t_philo *philo);
 void		print_mut(t_data *data, char *msg);
 
 // setters.c
-void	set_philo_state(t_philo *philo, t_state state);
-void 	set_keep_iterating(t_data *data, bool set_to);
+void		set_philo_state(t_philo *philo, t_state state);
+void		set_keep_iterating(t_data *data, bool set_to);
 
 #endif
