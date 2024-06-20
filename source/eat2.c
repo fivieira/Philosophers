@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:15:19 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/26 11:45:34 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:07:43 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,25 @@ int	take_forks(t_philo *philo)
 {
 	if (get_nb_philos(philo->data) == 1)
 		return (handle_1_philo(philo));
-	if (take_right_fork(philo) != 0)
-		return (1);
-	if (take_left_fork(philo) != 0)
+	if (philo->id % 2)
 	{
-		drop_right_fork(philo);
-		return (1);
+		if (take_right_fork(philo) != 0)
+			return (1);
+		if (take_left_fork(philo) != 0)
+		{
+			drop_right_fork(philo);
+			return (1);
+		}
+	}
+	else
+	{
+		if (take_left_fork(philo) != 0)
+			return (1);
+		if (take_right_fork(philo) != 0)
+		{
+			drop_left_fork(philo);
+			return (1);
+		}
 	}
 	return (0);
 }
