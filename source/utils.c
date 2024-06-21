@@ -6,7 +6,7 @@
 /*   By: fivieira <fivieira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 18:31:50 by fivieira          #+#    #+#             */
-/*   Updated: 2024/04/26 11:42:59 by fivieira         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:06:08 by fivieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	handle_1_philo(t_philo *philo)
 	take_left_fork(philo);
 	ft_usleep(get_die_time(philo->data));
 	set_philo_state(philo, DEAD);
+	drop_left_fork(philo);
 	return (1);
 }
 
